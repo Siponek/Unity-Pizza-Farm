@@ -1,0 +1,21 @@
+ # Default
+ * text=auto
+     
+ # Git config
+ .gitattributes text
+ .gitignore text
+     
+ # Generated unity data
+ *.asset text eol=lf
+ *.meta text eol=lf
+ *.physicsMaterial2D text eol=lf
+ *.prefab text eol=lf
+ *.unity text eol=lf
+   
+ # Source code / text
+ *.cs text
+ *.txt text
+     
+ # Binary media
+ *.png binary
+ *.jpg binary
