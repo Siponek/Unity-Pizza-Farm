@@ -9,10 +9,29 @@ public class PlayerController : MonoBehaviour
     public float zMin = -15f;
     public float zMax = -10f;
 
+    [SerializeField]
+    private ObjectPool objectPool;
+    private void Awake()
+    {
+        //this finds it in the scene
+        objectPool = FindAnyObjectByType<ObjectPool>();
+    }
+    void Start()
+    {
+        Debug.Log("Hello mom, player is controlled!");
+    }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject newProjectile = objectPool.GetObjectFromPool();
+            if (newProjectile != null)
+            {
+                newProjectile.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+            }
+
+        }
         // Get the input from the keyboard
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -31,8 +50,4 @@ public class PlayerController : MonoBehaviour
         );
     }
 
-    void Start()
-    {
-        Debug.Log("Hello mom, player is controlled!");
-    }
 }

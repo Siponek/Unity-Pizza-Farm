@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MoveForwardProjectile : MonoBehaviour
 {
-    public float projectileSpeed = 1f;
+    public float projectileSpeed = 2f;
     public float xMin = -15f;
     public float xMax = 15f;
     public float zMin = -15f;
