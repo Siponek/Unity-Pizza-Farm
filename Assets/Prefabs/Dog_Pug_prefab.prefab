@@ -1240,7 +1240,7 @@ GameObject:
   - component: {fileID: 5753207704712998574}
   m_Layer: 0
   m_Name: Dog_Pug_prefab
-  m_TagString: Untagged
+  m_TagString: dog_enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
