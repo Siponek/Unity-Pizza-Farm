@@ -8,16 +8,22 @@ public class PlayerController : MonoBehaviour
     public float xMax = 10f;
     public float zMin = -15f;
     public float zMax = -10f;
+    private static SpawnManager spawnManager ;
+    private ObjectPool objectPoolInstance;
 
-    [SerializeField]
-    private ObjectPool objectPool;
-    private void Awake()
-    {
-        //this finds it in the scene
-        objectPool = FindAnyObjectByType<ObjectPool>();
-    }
     void Start()
     {
+
+        objectPoolInstance = FindFirstObjectByType<ObjectPool>();
+        if (objectPoolInstance == null)
+        {
+            Debug.LogError("ObjectPool is null. Check PlayerController.");
+        }
+        spawnManager = FindFirstObjectByType<SpawnManager>();
+        if(spawnManager == null)
+        {
+            Debug.LogError("SpawnManager is null. Check PlayerController.");
+        }
         Debug.Log("Hello mom, player is controlled!");
     }
     // Update is called once per frame
@@ -25,11 +31,16 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject newProjectile = objectPool.GetObjectFromPool();
+            GameObject newProjectile = objectPoolInstance.GetObjectFromPool(poolTag: "pizza_projectile");
             if (newProjectile != null)
             {
                 newProjectile.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
             }
+
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            spawnManager.TriggerSpawnEnemy();
 
         }
         // Get the input from the keyboard

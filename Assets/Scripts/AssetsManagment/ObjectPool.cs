@@ -3,70 +3,91 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    
-    [SerializeField]
-    public int maxPoolSize = 10;
 
-    [SerializeField]
-    public int initialPoolSize = 10;
-
-    // The prefab that the pool will manage
-    [SerializeField]
-    private GameObject objectPrefab;
-
-    private Queue<GameObject> availableObjects = new Queue<GameObject>();
+    [System.Serializable]
+    public class Pool
+    {
+        public string tag;
+        public GameObject prefab;
+        public int initialSize = 10;
+        public bool shouldExpand = true;
+    }
+    public List<Pool> poolsForType;
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    private Dictionary<string, Pool> poolsDictionary;
 
     void Start()
     {
-        // Optionally pre-populate the pool
-        // for example, start with 10 objects
-         InitializePool(10);
+        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        poolsDictionary = new Dictionary<string, Pool>();
+
+        foreach (var pool in poolsForType)
+        {
+            Debug.Log($"Creating new pool with tag {pool.tag}");   
+            Queue<GameObject> objectPool = new();
+            
+            for (int i =0; i<  pool.initialSize; i++)
+            {
+                GameObject obj = CreateNewObject(pool.prefab);
+                objectPool.Enqueue(obj);
+            }
+            poolDictionary.Add(pool.tag, objectPool);
+            poolsDictionary.Add(pool.tag, pool);
+        }
+
+
+    }
+    private GameObject CreateNewObject(GameObject prefab)
+    {
+        if (prefab == null)
+        {
+            Debug.LogError("Prefab is null");
+            return null;
+        }
+        GameObject newObj = Instantiate(prefab);
+        newObj.SetActive(false);
+        newObj.transform.SetParent(transform);
+        return newObj;
     }
 
-    // Call this method to add objects to the pool
-    public void InitializePool(int count)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            GameObject newObj = Instantiate(objectPrefab);
-            newObj.SetActive(false);
-            availableObjects.Enqueue(newObj);
-            newObj.transform.SetParent(transform);
-        }
-    }
+
 
     // Call this method to get an object from the pool
-    public GameObject GetObjectFromPool()
+    public GameObject GetObjectFromPool(string poolTag)
     {
-        // if there are avaialable objects in the pool add one to the scene
-        if (availableObjects.Count > 0)
+        if (!poolDictionary.ContainsKey(poolTag) )
         {
-            GameObject obj = availableObjects.Dequeue();
-            obj.SetActive(true);
-            return obj;
+            Debug.LogError("Pool with tag " + poolTag + " does not exist.");
+            return null;
         }
-        if (transform.childCount < maxPoolSize)
+        if (poolsDictionary[poolTag].shouldExpand && poolDictionary[poolTag].Count == 0)
         {
-            if (transform.childCount == maxPoolSize) Debug.LogWarning("Object pool is full.");
-            return AddObjectToPool();
+            GameObject objectToSpawn = CreateNewObject(poolsDictionary[poolTag].prefab);
+            objectToSpawn.SetActive(true);
+            return objectToSpawn;
         }
+        else if (poolDictionary[poolTag].Count > 0)
+        {
+            
+            GameObject objectToSpawn = poolDictionary[poolTag].Dequeue();
+            objectToSpawn.SetActive(true);
+            return objectToSpawn;
+        
+        }
+        Debug.Log("No object available for prefab at pool: " + poolTag);
         return null;
     }
 
     // Call this method to return an object to the pool
-    public void ReturnObjectToPool(GameObject obj)
+    public void ReturnObjectToPool(string poolTag, GameObject objectToReturn)
     {
-        obj.SetActive(false);
-        availableObjects.Enqueue(obj);
-        obj.transform.SetParent(transform);
-    }
+        if(!poolDictionary.ContainsKey(poolTag))
+        {
+            Debug.Log("Pool tag" + poolTag + "Not found in dictionary of pools");
+            return;
+        }
+        objectToReturn.SetActive(false);
+        poolDictionary[poolTag].Enqueue(objectToReturn);
 
-    private GameObject AddObjectToPool()
-    {
-        GameObject newObj = Instantiate(objectPrefab);
-        newObj.SetActive(false);
-        availableObjects.Enqueue(newObj);
-        newObj.transform.SetParent(transform);
-        return newObj;
     }
 }

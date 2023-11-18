@@ -10,7 +10,7 @@ public class DestroyOutOfBounds : MonoBehaviour
 
     private void Awake()
     {
-        objectPool = FindObjectOfType<ObjectPool>();
+        objectPool = FindFirstObjectByType<ObjectPool>();
         // Get the bounds of the play area
         //xMin = -GameManager.Instance.playAreaSize.x / 2;
         //xMax = GameManager.Instance.playAreaSize.x / 2;
@@ -41,8 +41,9 @@ public class DestroyOutOfBounds : MonoBehaviour
     // Log where the object passed the bounds and destroy it
     private void DestroyAndLog(string direction)
     {
-        Debug.Log($"{gameObject.name} passed the {direction} boundary.");
-        objectPool.ReturnObjectToPool(gameObject);
+        string poolTag = gameObject.tag;
+        Debug.Log($"{gameObject.name} with tag {poolTag} passed the {direction} boundary.");
+        objectPool.ReturnObjectToPool(poolTag: poolTag, objectToReturn: gameObject);
         //Destroy(gameObject);
     }
 
