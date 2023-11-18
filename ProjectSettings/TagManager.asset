@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - pizza_projectile
+  - cow_enemy
+  - dog_enemy
+  - doe_enemy
   layers:
   - Default
   - TransparentFX
