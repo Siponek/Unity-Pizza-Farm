@@ -90,4 +90,12 @@ public class ObjectPool : MonoBehaviour
         poolDictionary[poolTag].Enqueue(objectToReturn);
 
     }
+    public int GetPoolCount(string tag)
+    {
+        if (poolDictionary.TryGetValue(tag, out var queue))
+        {
+            return queue.Count;
+        }
+        return 0;
+    }
 }
