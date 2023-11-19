@@ -28,18 +28,16 @@ public class SpawnManager : MonoBehaviour
         {
             Debug.LogError("ObjectPool is null. Check SpawnManager.");
         }
-    }
+        InvokeRepeating(nameof(SpawnEnemy), 1f, autoSpawnRate);
 
-    void Update()
-    {
-        if (Time.time - lastSpawnTime >= autoSpawnRate)
-        {
-            SpawnEnemy();
-            lastSpawnTime = Time.time;
-        }
     }
     public void TriggerSpawnEnemy()
     {
+        if (Time.time - lastSpawnTime < manualSpawnRate)
+        {
+            return;
+        }
+        lastSpawnTime = Time.time;
         SpawnEnemy();
     }
     private string GetRandomNameFromList(string[] enemiesArray)
@@ -49,14 +47,6 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-
-        // Break if the spawn rate is too high
-        if (Time.time - lastSpawnTime < manualSpawnRate)
-        {
-            return;
-        }
-        lastSpawnTime = Time.time;
-
         string enemyTag = GetRandomNameFromList(enemyTypesTags);
         GameObject newEnemy = objectPoolInstance.GetObjectFromPool(poolTag: enemyTag);
         if (newEnemy != null) newEnemy.transform.position = GetRandomSpawnPoint();

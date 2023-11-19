@@ -1239,8 +1239,6 @@ GameObject:
   - component: {fileID: 2754290185270024313}
   - component: {fileID: 5753207704712998574}
   - component: {fileID: -4887027063387208201}
-  - component: {fileID: -4101197520529106589}
-  - component: {fileID: -5084040148640180042}
   m_Layer: 0
   m_Name: Animal_Dog_Pug_prefab
   m_TagString: dog_enemy
@@ -1351,39 +1349,6 @@ MonoBehaviour:
   xMaxBound: 15
   zMinBound: -15
   zMaxBound: 31
---- !u!65 &-4101197520529106589
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682041958183778293}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-5084040148640180042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682041958183778293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb54a5fce06d9e46980fa60dea5938b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1727136077076201700
 GameObject:
   m_ObjectHideFlags: 0

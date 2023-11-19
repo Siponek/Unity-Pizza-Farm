@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public float zMax = -10f;
     private static SpawnManager spawnManager ;
     private ObjectPool objectPoolInstance;
+    private float yPizzaSpawnOffset = 2f;
+    private Vector3 pizzaPosition;
+
 
     void Start()
     {
@@ -25,6 +28,7 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("SpawnManager is null. Check PlayerController.");
         }
         Debug.Log("Hello mom, player is controlled!");
+        pizzaPosition = new(transform.position.x, transform.position.y + yPizzaSpawnOffset, transform.position.z);
     }
     // Update is called once per frame
     void Update()
@@ -34,7 +38,8 @@ public class PlayerController : MonoBehaviour
             GameObject newProjectile = objectPoolInstance.GetObjectFromPool(poolTag: "pizza_projectile");
             if (newProjectile != null)
             {
-                newProjectile.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+                pizzaPosition.Set(transform.position.x, transform.position.y + yPizzaSpawnOffset, transform.position.z);
+                newProjectile.transform.SetPositionAndRotation(pizzaPosition, Quaternion.identity);
             }
 
         }

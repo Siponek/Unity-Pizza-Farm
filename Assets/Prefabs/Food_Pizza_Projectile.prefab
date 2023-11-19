@@ -13,9 +13,6 @@ GameObject:
   - component: {fileID: 3845489471411706587}
   - component: {fileID: 1186807482524182177}
   - component: {fileID: 1751176693607956549}
-  - component: {fileID: 9155985034461644197}
-  - component: {fileID: 3443518465440778514}
-  - component: {fileID: -2286771671562100910}
   m_Layer: 0
   m_Name: Food_Pizza_Projectile
   m_TagString: pizza_projectile
@@ -117,67 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b520a46f29755f5419b133cb944d3bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMinBound: -15
-  xMaxBound: 15
-  zMinBound: -15
-  zMaxBound: 15
---- !u!65 &9155985034461644197
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152639781246447731}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.4597009, y: 0.13234863, z: 0.55363166}
-  m_Center: {x: 0, y: 0, z: -0.0000001937151}
---- !u!54 &3443518465440778514
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152639781246447731}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &-2286771671562100910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152639781246447731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb54a5fce06d9e46980fa60dea5938b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  xMin: -15
+  xMax: 15
+  zMin: -15
+  zMax: 15
