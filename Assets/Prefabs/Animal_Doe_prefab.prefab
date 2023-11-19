@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 5074061267765019898}
   - component: {fileID: 750756110265192479}
   - component: {fileID: 780922772962427098}
+  - component: {fileID: 8475783433381702219}
   m_Layer: 0
   m_Name: Animal_Doe_prefab
   m_TagString: doe_enemy
@@ -163,10 +164,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  xMin: -15
-  xMax: 15
-  zMin: -15
-  zMax: 15
+--- !u!114 &8475783433381702219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3596768763178645136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b520a46f29755f5419b133cb944d3bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xMinBound: -15
+  xMaxBound: 15
+  zMinBound: -15
+  zMaxBound: 31
 --- !u!1 &4951379022231481479
 GameObject:
   m_ObjectHideFlags: 0

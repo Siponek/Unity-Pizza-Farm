@@ -2,37 +2,32 @@ using UnityEngine;
 
 public class DestroyOutOfBounds : MonoBehaviour
 {
-    public float xMin = -15f;
-    public float xMax = 15f;
-    public float zMin = -15f;
-    public float zMax = 15f;
+    public float xMinBound = -15f;
+    public float xMaxBound = 15f;
+    public float zMinBound = -15f;
+    public float zMaxBound = 15f;
     private ObjectPool objectPool;
 
     private void Awake()
     {
         objectPool = FindFirstObjectByType<ObjectPool>();
-        // Get the bounds of the play area
-        //xMin = -GameManager.Instance.playAreaSize.x / 2;
-        //xMax = GameManager.Instance.playAreaSize.x / 2;
-        //zMin = -GameManager.Instance.playAreaSize.y / 2;
-        //zMax = GameManager.Instance.playAreaSize.y / 2;
     }
     void Update()
     {
         // Check each boundary separately to determine where the object passed the bounds
-        if (transform.position.x <= xMin)
+        if (transform.position.x <= xMinBound)
         {
             DestroyAndLog("left");
         }
-        else if (transform.position.x >= xMax)
+        else if (transform.position.x >= xMaxBound)
         {
             DestroyAndLog("right");
         }
-        else if (transform.position.z <= zMin)
+        else if (transform.position.z <= zMinBound)
         {
             DestroyAndLog("front");
         }
-        else if (transform.position.z >= zMax)
+        else if (transform.position.z >= zMaxBound)
         {
             DestroyAndLog("back");
         }
@@ -44,7 +39,6 @@ public class DestroyOutOfBounds : MonoBehaviour
         string poolTag = gameObject.tag;
         Debug.Log($"{gameObject.name} with tag {poolTag} passed the {direction} boundary.");
         objectPool.ReturnObjectToPool(poolTag: poolTag, objectToReturn: gameObject);
-        //Destroy(gameObject);
     }
 
     void Start()

@@ -1238,8 +1238,9 @@ GameObject:
   - component: {fileID: 3727638458328865723}
   - component: {fileID: 2754290185270024313}
   - component: {fileID: 5753207704712998574}
+  - component: {fileID: -4887027063387208201}
   m_Layer: 0
-  m_Name: Dog_Pug_prefab
+  m_Name: Animal_Dog_Pug_prefab
   m_TagString: dog_enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1332,10 +1333,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  xMin: -15
-  xMax: 15
-  zMin: -15
-  zMax: 15
+--- !u!114 &-4887027063387208201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682041958183778293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b520a46f29755f5419b133cb944d3bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xMinBound: -15
+  xMaxBound: 15
+  zMinBound: -15
+  zMaxBound: 31
 --- !u!1 &1727136077076201700
 GameObject:
   m_ObjectHideFlags: 0
